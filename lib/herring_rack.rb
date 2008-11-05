@@ -14,9 +14,9 @@ module Rack
   class Herring
     HerringRoot = ::File.join(::File.dirname(__FILE__),'..')
     def call(env)
-      Red.init
       req = Request.new(env)
-            
+      Red.init(::File.join(HerringRoot,req.path_info))
+      
       data, headers = case ::File.extname(req.path_info) 
       when '.ajax'
         update_page(req.POST['red']) if req.post?
