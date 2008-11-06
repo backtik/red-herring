@@ -4,7 +4,6 @@ require 'rubygems' rescue nil
 require 'sass' rescue nil
 require 'red'
 require 'red/executable'
-require 'red/version'
 require 'optparse'
 require 'ftools'
 
