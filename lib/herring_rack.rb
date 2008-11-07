@@ -31,8 +31,10 @@ module Rack
         [Sass::Engine.new(::File.read("#{HerringRoot}#{req.path_info}")).render, {"Content-Type" => "text/css"}]
       when '.ico'
         ['', {"Content-Type" => "image/ico"}]
+      when '.gif', '.jpg', '.png'
+        [::File.read("#{HerringRoot}#{req.path_info}"), {"Content-Type" => "image/#{::File.extname(req.path_info)}"}]
       else
-        ["",{}]
+        ['',{}]
       end
       
       res = Response.new([], 200, headers) do |r|
