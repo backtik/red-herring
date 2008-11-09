@@ -6,7 +6,7 @@ Herring is a small webrunner based on Rack. Herring is intended to stream Ruby c
 Installing
 Herring can be pulled from git: http://github.com/trek/herring/tree/master
 Herring requires Rack. Rack can be installed with
-    sudo install gem rack
+    sudo gem install rack
 
 Using
 Herring runs atop Rack.  You can run Herring with Rack's rackup command. The default port is :9292
