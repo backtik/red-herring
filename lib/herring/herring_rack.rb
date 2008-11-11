@@ -13,13 +13,12 @@ module Rack
   class Herring
     HerringRoot = ::File.join(::File.dirname(__FILE__),'..')
     def call(env)
-      req = Request.new(env)
-      Red.init(::File.join(HerringRoot,req.path_info))
-      
+      req = Request.new(env)      
       data, headers = case ::File.extname(req.path_info) 
       when '.ajax'
         update_page(req.POST['red']) if req.post?
       when '.red'
+        Red.init(::File.join(HerringRoot,req.path_info))
         [translate_to_string_including_ruby(::File.read("#{HerringRoot}#{req.path_info}")), {"Content-Type" => "text/js"}]
       when '.html'
         [::File.read("#{HerringRoot}#{req.path_info}"), {"Content-Type" => "text/html"}]
