@@ -4,9 +4,15 @@ These aren't formats you're looking for.
 Herring is a small webrunner based on Rack. Herring is intended to stream Ruby created documents requested via HTTP without first needing to write a normal file to disk. 
 
 Installing
-Herring can be pulled from git: http://github.com/trek/herring/tree/master
-Herring requires Rack. Rack can be installed with
-    sudo gem install rack
+Herring is installed as gem.
+    gem sources -a http://gems.github.com
+    sudo gem install backtik-red-herring
+
+Generating
+You can generate a new Herring structure with the herring command
+    cd /path/to/some/folder
+    herring some_name
+
 
 Using
 Herring runs atop Rack.  You can run Herring with Rack's rackup command. The default port is :9292
