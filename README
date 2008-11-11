@@ -8,11 +8,14 @@ Herring is installed as gem.
     gem sources -a http://gems.github.com
     sudo gem install backtik-red-herring
 
-Generating
+Generating or Initializing
 You can generate a new Herring structure with the herring command
     cd /path/to/some/folder
     herring some_name
-
+  OR
+You can initialize an existing directory with the --init option
+    cd /path/to/some/herring/folder
+    herring --init
 
 Using
 Herring runs atop Rack.  You can run Herring with Rack's rackup command. The default port is :9292
