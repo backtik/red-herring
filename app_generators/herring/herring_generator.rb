@@ -1,3 +1,7 @@
+def nil.to_s
+    ""
+end
+
 class HerringGenerator < RubiGen::Base
 
   DEFAULT_SHEBANG = File.join(Config::CONFIG['bindir'],
@@ -11,7 +15,7 @@ class HerringGenerator < RubiGen::Base
     super
     usage if args.empty?
     @destination_root = File.expand_path(args.shift)
-    @name = base_name
+    @name = base_name rescue ''
     extract_options
   end
 
@@ -51,6 +55,7 @@ EOS
       #         "Some comment about this option",
       #         "Default: none") { |options[:author]| }
       opts.on("-v", "--version", "Show the #{File.basename($0)} version number and quit.")
+      opts.on("-i", "--init", "Initialize an existing directory as a herring project") { options[:init] = true}
     end
 
     def extract_options

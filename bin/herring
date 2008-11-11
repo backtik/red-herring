@@ -8,6 +8,13 @@ if %w(-v --version).include? ARGV.first
   exit(0)
 end
 
+if %w(-i --init).include? ARGV.first
+  require "ftools"
+  f = File.join(File.dirname(__FILE__), "../app_generators/herring/templates/config.ru")
+  File.copy(f, 'config.ru')
+  exit(0)
+end
+
 require 'rubigen/scripts/generate'
 source = RubiGen::PathSource.new(:application, 
   File.join(File.dirname(__FILE__), "../app_generators"))

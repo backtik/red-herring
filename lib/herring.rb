@@ -1,5 +1,5 @@
 module Herring
-  VERSION = '0.0.1'
+  VERSION = '0.0.2'
 end
 
 $:.unshift(File.join(File.dirname(__FILE__), 'herring'))
