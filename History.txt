@@ -1,0 +1,4 @@
+== 0.0.1 2008-11-10
+
+* 1 major enhancement:
+  * Initial release as a gem

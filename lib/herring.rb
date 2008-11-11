@@ -1,0 +1,1 @@
+require 'herring_rack'
