@@ -11,7 +11,6 @@ include Red
 
 module Rack
   class Herring
-    HerringRoot = ::File.join(::File.dirname(__FILE__),'..')
     def call(env)
       req = Request.new(env)      
       data, headers = case ::File.extname(req.path_info) 
