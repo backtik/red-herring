@@ -1,6 +1,7 @@
 require 'rack/request'
 require 'rack/response'
 require 'rubygems' rescue nil
+require 'haml' rescue nil
 require 'sass' rescue nil
 require 'red'
 require 'red/executable'
@@ -25,6 +26,12 @@ module Rack
         [pre + translated_ruby + post, {"Content-Type" => "text/js"}]
       when '.html'
         [::File.read("#{HerringRoot}#{req.path_info}"), {"Content-Type" => "text/html"}]
+      when /\.(haml|html)/
+        if req.path_info =~ /\.haml(\.html)?$/
+          [Haml::Engine.new(::File.read("#{HerringRoot}#{req.path_info}")).to_html, {"Content-Type" => "text/html"}]
+        else
+          [::File.read("#{HerringRoot}#{req.path_info}"), {"Content-Type" => "text/html"}]
+        end
       when '.js'
         [::File.read("#{HerringRoot}#{req.path_info}"), {"Content-Type" => "text/javascript"}]
       when '.css'
