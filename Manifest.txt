@@ -11,6 +11,3 @@ bin/herring
 lib/herring.rb
 lib/herring/herring_rack.rb
 red-herring.gemspec
-script/console
-script/destroy
-script/generate

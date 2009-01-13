@@ -9,7 +9,6 @@ require 'optparse'
 require 'ftools'
 
 include Red
-Red.instance_eval "def debug; true; end"
 
 module Rack
   class Herring
@@ -20,10 +19,8 @@ module Rack
         update_page(req.POST['red']) if req.post?
       when '.red'
         Red.init(::File.join(HerringRoot,req.path_info))
-        pre  = "try{" 
-        post = "}catch(e){if(e.__class__){m$raise(e);};$ee=e;var m=e.message.match(/([^\\$]+)\\.m\\$(\\w+)\\sis\\snot\\sa\\sfunction/);if(m){m$raise(c$NoMethodError,$q('undefined method \"'+m[2]+'\" for '+m[1]));};var c=e.message.match(/([\\s\\S]+)\\sis\\sundefined/);if(c){c=c[1].replace(/\\./g,'::').replace(/c\\$/g,'');m$raise(c$NameError,$q('uninitialized constant '+c));};}"
         translated_ruby = translate_to_string_including_ruby(::File.read("#{HerringRoot}#{req.path_info}"))
-        [pre + translated_ruby + post, {"Content-Type" => "text/js"}]
+        [translated_ruby, {"Content-Type" => "text/js"}]
       when '.html'
         [::File.read("#{HerringRoot}#{req.path_info}"), {"Content-Type" => "text/html"}]
       when /\.(haml|html)/
